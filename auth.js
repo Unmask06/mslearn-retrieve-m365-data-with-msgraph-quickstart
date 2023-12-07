@@ -1,11 +1,12 @@
 //MSAL configuration
 const msalConfig = {
-    auth: {
-        clientId: '<your client ID here>',
-        // comment out if you use a multi-tenant AAD app
-        authority: 'https://login.microsoftonline.com/<your directory ID here>',
-        redirectUri: 'http://localhost:8080'
-    }
+  auth: {
+    clientId: "8f10dacd-ec49-44e3-8a6a-1859e7347ba1",
+    // comment out if you use a multi-tenant AAD app
+    authority:
+      "https://login.microsoftonline.com/218da14f-b67f-4503-b451-7bcad1d43d3f",
+    redirectUri: "http://localhost:8080",
+  },
 };
 const msalRequest = { scopes: [] };
 function ensureScope (scope) {
@@ -46,5 +47,5 @@ async function getToken() {
         } else {
             throw silentError;
         }
-    }
+    } 
 }
