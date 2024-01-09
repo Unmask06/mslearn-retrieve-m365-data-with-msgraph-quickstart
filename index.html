@@ -1,21 +1,29 @@
+<!-- index.html-->
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <title>JavaScript Microsoft Graph SPA</title>
-  <link rel="icon" href="data:;base64,="> <!-- Suppress favicon error -->
-</head>
+  <head>
+    <title>JavaScript Microsoft Graph SPA</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
 
   <body>
-    <main id="main-container" role="main" class="container">
-      <div id="content" style="display: none">
-        <h4>Welcome <span id="userName"></span></h4>
-        <button id="readExcel" onclick="readExcelFile();return false;" href="#">
-          readExcel
+    <main id="app" role="main" class="container">
+      <div id="content" v-if="isSignedIn">
+        <h4>Welcome <span id="userName">{{ userName }}</span></h4>
+        <button id="readExcel" onclick="readExcelFile()">Read Excel</button>
+        <button id="sendAccessToken" @click="sendAccessToken">
+          Send Access Token
+        </button>
+        <button id="showUserInfo" @click="displayUserInfo">
+          Show User Info
+        </button>
+        <button id="modifyUserInfo" @click="modifyUserInfo">
+          Modify User Info
         </button>
       </div>
-
-      <a id="signin" onclick="displayUI(); return false;" href="#">
+      <div id="userInfoDisplay">User Info: {{ userInfo }}</div>
+      <div id="excelContent">Excel Content:{{ excelData }}</div>
+      <a id="signin" @click="displayUI" v-if="!isSignedIn">
         <img
           src="./images/ms-symbollockup_signin_light.png"
           alt="Sign in with Microsoft"
